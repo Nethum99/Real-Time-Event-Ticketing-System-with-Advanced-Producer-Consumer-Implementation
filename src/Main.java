@@ -2,14 +2,22 @@
 public class Main {
 
     public static void main(String[] args) {
-        TicketPool ticketPool = new TicketPool(5);
 
-        for(int i=3; i<5; i++){
+        Configuration configuration = new Configuration();
+
+
+        TicketPool ticketPool = new TicketPool(configuration.getMaxCapacity());
+
+        for(int i=0; i<configuration.getActiveVendors(); i++){
             Vendor vendor = new Vendor(ticketPool);
             vendor.start();
         }
 
-        Customer customer = new Customer(ticketPool);
-        customer.start();kk
+        for(int i=0; i<configuration.getActiveCustomers(); i++){
+            Customer customer = new Customer(ticketPool);
+            customer.start();
+        }
+
+
     }
 }
