@@ -24,11 +24,61 @@ public class Configuration {
         System.out.println("Enter max capacity in ticketpool");
         this.maxCapacity = scanner.nextInt();
 
+        System.out.println("Enter number of active vendors");
+        this.activeVendors = scanner.nextInt();
+
+        System.out.println("Enter number of active customers");
+        this.activeCustomers = scanner.nextInt();
+
+        scanner.close();
+
     }
 
-
-    public void totalTickets(){
-        System.out.println("Total number of ticket available for the event :");
+    public int getMaxCapacity() {
+        return maxCapacity;
     }
 
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public int getActiveVendors() {
+        return activeVendors;
+    }
+
+    public void setActiveVendors(int activeVendors) {
+        this.activeVendors = activeVendors;
+    }
+
+    public int getActiveCustomers() {
+        return activeCustomers;
+    }
+
+    public void setActiveCustomers(int activeCustomers) {
+        this.activeCustomers = activeCustomers;
+    }
+
+    public int getTicketReleaseRate() {
+        return ticketReleaseRate;
+    }
+
+    public void setTicketReleaseRate(int ticketReleaseRate) {
+        this.ticketReleaseRate = ticketReleaseRate;
+    }
+
+    public int getCustomerRetrievalRate() {
+        return customerRetrievalRate;
+    }
+
+    public void setCustomerRetrievalRate(int customerRetrievalRate) {
+        this.customerRetrievalRate = customerRetrievalRate;
+    }
+
+    public int getTotalTickets() {
+        return totalTickets;
+    }
+
+    public void setTotalTickets(int totalTickets) {
+        this.totalTickets = totalTickets;
+    }
 }
