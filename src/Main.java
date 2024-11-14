@@ -10,6 +10,6 @@ public class Main {
         }
 
         Customer customer = new Customer(ticketPool);
-        customer.start();
+        customer.start();kk
     }
 }
