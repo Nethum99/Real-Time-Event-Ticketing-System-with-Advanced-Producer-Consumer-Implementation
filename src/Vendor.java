@@ -1,23 +1,26 @@
 public class Vendor extends Thread{
 
     private final TicketPool ticketPool;
-    private final Ticket ticket;
+    private final int ticketReleaseRate;
 
-    public Vendor(TicketPool ticketPool){
+    public Vendor(TicketPool ticketPool,int ticketReleaseRate){
         this.ticketPool = ticketPool;
-        this.ticket = new Ticket();
+        this.ticketReleaseRate = ticketReleaseRate;
+
     }
 
     public void run(){
-        while (true){
+        while (!ticketPool.isSoldOut()){
             try{
-                int item = ticket.generatedNumber();
-                ticketPool.createTicket(item);
+                if(!ticketPool.createTicket(ticketReleaseRate)){
+                    break;
+                }
                 Thread.sleep(500);
             }
             catch (Exception e){
                 e.printStackTrace();
             }
         }
+        System.out.println("Vendor thread ending as tickets are sold out.");
     }
 }

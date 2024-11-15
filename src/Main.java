@@ -6,10 +6,10 @@ public class Main {
         Configuration configuration = new Configuration();
 
 
-        TicketPool ticketPool = new TicketPool(configuration.getMaxCapacity());
+        TicketPool ticketPool = new TicketPool(configuration.getMaxCapacity(),configuration.getTotalTickets());
 
         for(int i=0; i<configuration.getActiveVendors(); i++){
-            Vendor vendor = new Vendor(ticketPool);
+            Vendor vendor = new Vendor(ticketPool,configuration.getTicketReleaseRate());
             vendor.start();
         }
 
