@@ -5,6 +5,10 @@ public class Main {
 
         Configuration configuration = new Configuration();
 
+        if(!configuration.getConfiramation()){
+            System.exit(0);
+        }
+
         System.out.println("Total Tickets: " + configuration.getTotalTickets());
         System.out.println("Ticket Release Rate: " + configuration.getTicketReleaseRate());
         System.out.println("Customer Retrieval Rate: " + configuration.getCustomerRetrievalRate());

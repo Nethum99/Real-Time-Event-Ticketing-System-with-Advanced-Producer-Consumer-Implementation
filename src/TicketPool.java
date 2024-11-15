@@ -65,7 +65,7 @@ public class TicketPool {
 
            }
            if(ticketConsumed>=totalTickets){
-               System.out.println("All tickets are sold out!");
+               System.out.println("All tickets are sold out!. System is stopping");
                return false;
            }
            return true;
@@ -76,7 +76,14 @@ public class TicketPool {
     }
 
     public boolean isSoldOut(){
-        return  soldOut;
+     lock.lock();
+     try {
+         return soldOut;
+     }
+     finally {
+         lock.unlock();
+     }
+
     }
 
 }

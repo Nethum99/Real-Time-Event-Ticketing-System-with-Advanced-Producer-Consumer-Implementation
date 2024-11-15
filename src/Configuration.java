@@ -8,11 +8,12 @@ public class Configuration {
     private int customerRetrievalRate;
     private int activeCustomers;
     private int activeVendors;
+    private boolean confirmed;
 
     public Configuration(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the total number of tickets : ");
+        System.out.print("Enter the total : ");
         this.totalTickets = scanner.nextInt();
 
         System.out.print("Enter ticket release rate : ");
@@ -21,7 +22,7 @@ public class Configuration {
         System.out.print("Enter customer retrieval rate : ");
         this.customerRetrievalRate = scanner.nextInt();
 
-        System.out.print("Enter max capacity in ticketpool : ");
+        System.out.println("Enter max capacity in ticketpool : ");
         this.maxCapacity = scanner.nextInt();
 
         System.out.print("Enter number of active vendors : ");
@@ -32,14 +33,18 @@ public class Configuration {
 
         System.out.print("Do you want to start the system? (yes/no): ");
         String startConfirmation = scanner.next();
+        this.confirmed = startConfirmation.equalsIgnoreCase("yes");
 
-        if(!startConfirmation.equalsIgnoreCase("yes")){
-            System.out.println("System start aborted");
-            System.out.println(0);
+        if(!confirmed){
+            System.out.println("System aborted. Exiting...");
         }
 
         scanner.close();
 
+    }
+
+    public boolean getConfiramation(){
+        return confirmed;
     }
 
     public int getMaxCapacity() {

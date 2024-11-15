@@ -23,6 +23,5 @@ public class Customer extends Thread {
 
         }
         System.out.println("Customer thread ending as tickets are sold out.");
-
     }
 }
