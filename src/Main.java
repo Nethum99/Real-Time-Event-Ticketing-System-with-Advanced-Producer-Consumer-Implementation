@@ -5,6 +5,13 @@ public class Main {
 
         Configuration configuration = new Configuration();
 
+        System.out.println("Total Tickets: " + configuration.getTotalTickets());
+        System.out.println("Ticket Release Rate: " + configuration.getTicketReleaseRate());
+        System.out.println("Customer Retrieval Rate: " + configuration.getCustomerRetrievalRate());
+        System.out.println("Max Capacity: " + configuration.getMaxCapacity());
+        System.out.println("Active Vendors: " + configuration.getActiveVendors());
+        System.out.println("Active Customers: " + configuration.getActiveCustomers());
+
 
         TicketPool ticketPool = new TicketPool(configuration.getMaxCapacity(),configuration.getTotalTickets());
 
@@ -14,7 +21,7 @@ public class Main {
         }
 
         for(int i=0; i<configuration.getActiveCustomers(); i++){
-            Customer customer = new Customer(ticketPool);
+            Customer customer = new Customer(ticketPool,configuration.getCustomerRetrievalRate());
             customer.start();
         }
 
