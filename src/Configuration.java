@@ -12,23 +12,31 @@ public class Configuration {
     public Configuration(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the total :");
+        System.out.print("Enter the total number of tickets : ");
         this.totalTickets = scanner.nextInt();
 
-        System.out.println("Enter ticket release rate :");
+        System.out.print("Enter ticket release rate : ");
         this.ticketReleaseRate = scanner.nextInt();
 
-        System.out.println("Enter customer retrieval rate :");
+        System.out.print("Enter customer retrieval rate : ");
         this.customerRetrievalRate = scanner.nextInt();
 
-        System.out.println("Enter max capacity in ticketpool");
+        System.out.print("Enter max capacity in ticketpool : ");
         this.maxCapacity = scanner.nextInt();
 
-        System.out.println("Enter number of active vendors");
+        System.out.print("Enter number of active vendors : ");
         this.activeVendors = scanner.nextInt();
 
-        System.out.println("Enter number of active customers");
+        System.out.print("Enter number of active customers : ");
         this.activeCustomers = scanner.nextInt();
+
+        System.out.print("Do you want to start the system? (yes/no): ");
+        String startConfirmation = scanner.next();
+
+        if(!startConfirmation.equalsIgnoreCase("yes")){
+            System.out.println("System start aborted");
+            System.out.println(0);
+        }
 
         scanner.close();
 

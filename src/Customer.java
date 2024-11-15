@@ -12,7 +12,9 @@ public class Customer extends Thread {
     public void run(){
         while (!ticketPool.isSoldOut()){
             try{
-              ticketPool.consumeTicket(customerRetrievalRate);
+              if(!ticketPool.consumeTicket(customerRetrievalRate)){
+                  break;
+              }
               Thread.sleep(500);
             }
             catch (Exception e){

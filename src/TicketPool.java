@@ -50,23 +50,25 @@ public class TicketPool {
 
 
 
-    public int consumeTicket(int numberOfTickets) throws InterruptedException{
+    public boolean consumeTicket(int numberOfTickets) throws InterruptedException{
        lock.lock();
        try{
-           int ticketsConsumedInBatch = 0;
-
            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
                UUID ticket = ticketpool.poll();
                if(ticket!=null){
-                   System.out.println("Consumer consumed tocket "+ticket);
+                   System.out.println("Consumer consumed ticket "+ticket);
                    ticketConsumed++;
-                   ticketsConsumedInBatch++;
+                   return true;
+
+
                }
+
            }
            if(ticketConsumed>=totalTickets){
-               System.out.println("All tickets are sld out!");
+               System.out.println("All tickets are sold out!");
+               return false;
            }
-           return ticketsConsumedInBatch;
+           return true;
        }
        finally {
            lock.unlock();
