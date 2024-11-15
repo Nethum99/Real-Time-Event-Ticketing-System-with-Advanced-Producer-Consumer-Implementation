@@ -56,11 +56,12 @@ public class TicketPool {
            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
                UUID ticket = ticketpool.poll();
                if(ticket!=null){
-                   System.out.println("Consumer consumed ticket "+ticket);
+                   System.out.println("Consumer"+Thread.currentThread().getName()+" consumed ticket "+ticket);
                    ticketConsumed++;
                    return true;
-
-
+               }
+               else{
+                   System.out.println("Consumer "+Thread.currentThread().getName()+" is waiting");
                }
 
            }
