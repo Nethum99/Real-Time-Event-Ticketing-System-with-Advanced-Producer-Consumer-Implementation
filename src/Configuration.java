@@ -13,7 +13,7 @@ public class Configuration {
     public Configuration(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the total : ");
+        System.out.print("Enter the total of tickets in event : ");
         this.totalTickets = scanner.nextInt();
 
         System.out.print("Enter ticket release rate : ");

@@ -9,7 +9,7 @@ public class Main {
             System.exit(0);
         }
 
-        System.out.println("Total Tickets: " + configuration.getTotalTickets());
+        System.out.println("Event Total Tickets : " + configuration.getTotalTickets());
         System.out.println("Ticket Release Rate: " + configuration.getTicketReleaseRate());
         System.out.println("Customer Retrieval Rate: " + configuration.getCustomerRetrievalRate());
         System.out.println("Max Capacity: " + configuration.getMaxCapacity());
