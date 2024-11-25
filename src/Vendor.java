@@ -9,6 +9,7 @@ public class Vendor extends Thread{
 
     }
 
+    @Override
     public void run(){
         while (!ticketPool.isSoldOut()){
             try{

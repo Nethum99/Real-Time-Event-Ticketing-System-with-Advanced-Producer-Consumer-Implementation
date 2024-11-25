@@ -30,11 +30,12 @@ public class TicketPool {
             ticketToProduce = Math.min(ticketToProduce,totalTickets-ticketProduced);
 
             if(ticketToProduce>0){
+                System.out.println("\n>>> Tickets Released :");
                 for(int i=0;i<ticketToProduce;i++){
                     UUID ticketID = UUID.randomUUID();
                     ticketpool.add(ticketID);
                     ticketProduced++;
-                    System.out.println("Ticket : "+ticketID+" is released.");
+                    System.out.println("[TICKET ID : "+ticketID+" ]");
                 }
                 return true;
             }
@@ -45,6 +46,7 @@ public class TicketPool {
         }
         finally {
             lock.unlock();
+
         }
     }
 
@@ -53,10 +55,11 @@ public class TicketPool {
     public boolean consumeTicket(int numberOfTickets) throws InterruptedException{
        lock.lock();
        try{
+           System.out.println("\n>>> Tickets Consumed :");
            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
                UUID ticket = ticketpool.poll();
                if(ticket!=null){
-                   System.out.println("Consumer"+Thread.currentThread().getName()+" consumed ticket "+ticket);
+                   System.out.println("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
                    ticketConsumed++;
                    return true;
                }
