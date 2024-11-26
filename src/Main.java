@@ -32,7 +32,7 @@ public class Main {
 
         for(int i=0; i<configuration.getActiveCustomers(); i++){
             Customer customer = new Customer(ticketPool,configuration.getCustomerRetrievalRate());
-            customer.start();.
+            customer.start();
         }
 
 

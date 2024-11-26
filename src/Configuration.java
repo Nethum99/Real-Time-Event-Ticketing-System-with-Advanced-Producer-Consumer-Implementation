@@ -9,18 +9,72 @@ public class Configuration {
     private int activeCustomers;
     private int activeVendors;
     private boolean confirmed;
+    private boolean validation = true;
 
     public Configuration(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the total of tickets in event : ");
-        this.totalTickets = scanner.nextInt();
+        while (validation) {
+            int tempTotalTickets = 0;
+            try{
+                System.out.print("Enter the total of tickets in event : ");
+                tempTotalTickets = scanner.nextInt();
+                if(tempTotalTickets>0){
+                    this.totalTickets = tempTotalTickets;
+                    validation = false;
+                }
+                else {
+                    System.out.println("The value should be greater than zero. Please try again!");
+                }
+            }
+            catch (Exception e){
+                System.out.println("It seems you entered text. Please enter a number instead");
+                scanner.nextLine();
+            }
+        }
+        validation = true;
 
-        System.out.print("Enter ticket release rate : ");
-        this.ticketReleaseRate = scanner.nextInt();
 
-        System.out.print("Enter customer retrieval rate : ");
-        this.customerRetrievalRate = scanner.nextInt();
+        while (validation) {
+            int tempTicketReleaseRate = 0;
+            try{
+                System.out.print("Enter ticket release rate : ");
+                tempTicketReleaseRate = scanner.nextInt();
+                if(tempTicketReleaseRate>0){
+                    this.ticketReleaseRate = tempTicketReleaseRate;
+                    validation = false;
+                }
+                else {
+                    System.out.println("The value should be greater than zero. Please try again!");
+                }
+            }
+            catch (Exception e){
+                System.out.println("It seems you entered text. Please enter a number instead");
+                scanner.nextLine();
+            }
+        }
+        validation = true;
+
+        while (validation) {
+            int tempCustomerRetrievalRate = 0;
+            try{
+                System.out.print("Enter customer retrieval rate : ");
+                tempCustomerRetrievalRate = scanner.nextInt();
+                if(tempCustomerRetrievalRate>0){
+                    this.customerRetrievalRate = tempCustomerRetrievalRate;
+                    validation = false;
+                }
+                else {
+                    System.out.println("The value should be greater than zero. Please try again!");
+                }
+            }
+            catch (Exception e){
+                System.out.println("It seems you entered text. Please enter a number instead");
+                scanner.nextLine();
+            }
+        }
+        validation = true;
+
 
         System.out.println("Enter max capacity in ticketpool : ");
         this.maxCapacity = scanner.nextInt();
