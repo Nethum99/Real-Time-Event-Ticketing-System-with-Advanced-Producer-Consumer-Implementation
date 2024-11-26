@@ -55,7 +55,9 @@ public class TicketPool {
     public boolean consumeTicket(int numberOfTickets) throws InterruptedException{
        lock.lock();
        try{
-           System.out.println("\n>>> Tickets Consumed :");
+           if(!ticketpool.isEmpty()){
+            System.out.println("\n>>> Tickets Consumed :");
+           }
            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
                UUID ticket = ticketpool.poll();
                if(ticket!=null){

@@ -9,7 +9,7 @@ public class Configuration {
     private int activeCustomers;
     private int activeVendors;
     private boolean confirmed;
-    private boolean validation;
+    private boolean validation =true;
 
     public Configuration(){
         Scanner scanner = new Scanner(System.in);
