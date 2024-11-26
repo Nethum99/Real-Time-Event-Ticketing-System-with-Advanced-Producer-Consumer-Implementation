@@ -7,6 +7,8 @@ public class Main {
 
         if(!configuration.getConfiramation()){
             System.exit(0);
+        }else {
+            System.out.println("System Starting");
         }
 
         System.out.println("Event Total Tickets : " + configuration.getTotalTickets());
