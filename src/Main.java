@@ -22,7 +22,7 @@ public class Main {
         System.out.println("                                                     ");
         System.out.println("                TICKET SYSTEM                         ");
         System.out.println("                                                     ");
-        System.out.println("=============================================");
+        System.out.println("===============================================");
 
 
         TicketPool ticketPool = new TicketPool(configuration.getMaxCapacity(),configuration.getTotalTickets());
