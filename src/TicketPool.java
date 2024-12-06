@@ -37,6 +37,8 @@ public class TicketPool {
                     ticketProduced++;
                     System.out.println("[TICKET ID : "+ticketID+" ]");
                 }
+                System.out.println("Available total ticket count : "+(totalTickets-ticketProduced));
+                System.out.println("Available ticket count in ticket pool : "+ticketpool.size());
                 return true;
             }
             else {
