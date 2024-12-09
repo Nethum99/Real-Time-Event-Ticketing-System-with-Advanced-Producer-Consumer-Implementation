@@ -1,11 +1,16 @@
-package com.nethum.ticketsystem.realtimeticketing;
+package com.nethum.ticketsystem.realtimeticketing.service;
 
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TicketPool {
+
+    private static Logger logger = Logger.getLogger(TicketPool.class.getName());
 
     private final ConcurrentLinkedQueue<UUID> ticketpool = new ConcurrentLinkedQueue<UUID>();
     private final int maxTicketCapacity;
@@ -18,13 +23,22 @@ public class TicketPool {
     public TicketPool(int maxTicketCapacity,int totalTickets){
         this.maxTicketCapacity = maxTicketCapacity;
         this.totalTickets = totalTickets;
+
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.FINE); // Set the handler's level to FINE
+        logger.addHandler(consoleHandler);  // Attach the handler to the logger
+
+        logger.setLevel(Level.FINE); // Set the logger's level to FINE
+        logger.setUseParentHandlers(false); // Disable default parent handlers to avoid duplicate logs
+
+        logger.info("Logger configured for TicketPool.");
     }
 
     public boolean createTicket(int numberOfTickets)throws InterruptedException{
         lock.lock();
         try{
             if(soldOut || ticketProduced>=totalTickets){
-                System.out.println("Tickets are sold out. No more tickets can be produced.");
+                logger.warning("Tickets are sold out. No more tickets can be produced.");
                 return false;
             }
 
@@ -32,19 +46,19 @@ public class TicketPool {
             ticketToProduce = Math.min(ticketToProduce,totalTickets-ticketProduced);
 
             if(ticketToProduce>0){
-                System.out.println("\n>>> Tickets Released :");
+                logger.info("\n>>> Tickets Released :");
                 for(int i=0;i<ticketToProduce;i++){
                     UUID ticketID = UUID.randomUUID();
                     ticketpool.add(ticketID);
                     ticketProduced++;
-                    System.out.println("[TICKET ID : "+ticketID+" ]");
+                    logger.log(Level.FINE,"[TICKET ID : "+ticketID+" ]");
                 }
-                System.out.println("Available total ticket count : "+(totalTickets-ticketProduced));
-                System.out.println("Available ticket count in ticket pool : "+ticketpool.size());
+                logger.log(Level.INFO,"Available total ticket count : "+(totalTickets-ticketProduced));
+                logger.log(Level.INFO,"Available ticket count in ticket pool : "+ticketpool.size());
                 return true;
             }
             else {
-                System.out.println("Cannot produce tickets. Pool at max capacity or total tickets limit reached.");
+                logger.warning("Cannot produce tickets. Pool at max capacity or total tickets limit reached.");
                 return false;
             }
         }
@@ -60,22 +74,22 @@ public class TicketPool {
        lock.lock();
        try{
            if(!ticketpool.isEmpty()){
-            System.out.println("\n>>> Tickets Consumed :");
+            logger.info("\n>>> Tickets Consumed :");
            }
            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
                UUID ticket = ticketpool.poll();
                if(ticket!=null){
-                   System.out.println("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
+                   logger.log(Level.FINE,"[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
                    ticketConsumed++;
                    return true;
                }
                else{
-                   System.out.println("Consumer "+Thread.currentThread().getName()+" is waiting");
+                   logger.warning("Consumer "+Thread.currentThread().getName()+" is waiting");
                }
 
            }
            if(ticketConsumed>=totalTickets){
-               System.out.println("All tickets are sold out!. System is stopping");
+               logger.info("All tickets are sold out!. System is stopping");
                return false;
            }
            return true;

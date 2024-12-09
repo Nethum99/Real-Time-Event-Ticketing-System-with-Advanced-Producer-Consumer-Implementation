@@ -1,4 +1,6 @@
-package com.nethum.ticketsystem.realtimeticketing;
+package com.nethum.ticketsystem.realtimeticketing.model;
+
+import com.nethum.ticketsystem.realtimeticketing.service.TicketPool;
 
 public class Customer extends Thread {
 

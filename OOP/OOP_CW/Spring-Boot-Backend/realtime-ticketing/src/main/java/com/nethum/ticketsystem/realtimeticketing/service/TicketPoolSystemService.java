@@ -1,12 +1,8 @@
 package com.nethum.ticketsystem.realtimeticketing.service;
 
-import com.nethum.ticketsystem.realtimeticketing.Configuration;
-import com.nethum.ticketsystem.realtimeticketing.Customer;
-import com.nethum.ticketsystem.realtimeticketing.TicketPool;
-import com.nethum.ticketsystem.realtimeticketing.Vendor;
-import com.nethum.ticketsystem.realtimeticketing.controller.ConfigurationController;
+import com.nethum.ticketsystem.realtimeticketing.model.Customer;
+import com.nethum.ticketsystem.realtimeticketing.model.Vendor;
 import com.nethum.ticketsystem.realtimeticketing.model.ConfigurationDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

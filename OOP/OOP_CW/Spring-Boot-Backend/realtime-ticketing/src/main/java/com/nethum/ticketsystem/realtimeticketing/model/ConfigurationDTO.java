@@ -1,10 +1,24 @@
 package com.nethum.ticketsystem.realtimeticketing.model;
 
 
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+@Entity
+@Table
 @Component
 public class ConfigurationDTO {
+    @Id
+    @SequenceGenerator(
+            name = "input_sequence",
+            sequenceName = "input_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "input_sequence"
+    )
+    private int id;
     private int totalTickets;
     private int maxCapacity;
     private int ticketReleaseRate;
@@ -22,6 +36,14 @@ public class ConfigurationDTO {
         this.ticketReleaseRate = ticketReleaseRate;
         this.maxCapacity = maxCapacity;
         this.customerRetrievalRate = customerRetrievalRate;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getTotalTickets() {

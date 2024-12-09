@@ -19,6 +19,7 @@ public class ConfigurationController {
     @PostMapping("start")
     public void startSystem(@RequestBody ConfigurationDTO configurationDTO){
         configurationService.readBody(configurationDTO);
+        configurationService.saveBody(configurationDTO);
     }
 
 }
