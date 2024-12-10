@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         // Broadcast to all clients subscribed to topics under "/tickets"
-        config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/logs");
         // Prefix for messages sent from clients to the server
         config.setApplicationDestinationPrefixes("/app");
     }
@@ -21,7 +21,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/websocket") // This is the WebSocket endpoint
-                .setAllowedOrigins("http://localhost:3005") // Ensure this matches your frontend's origin
+                .setAllowedOrigins("http://localhost:3006") // Ensure this matches your frontend's origin
                 .withSockJS();
     }
 }

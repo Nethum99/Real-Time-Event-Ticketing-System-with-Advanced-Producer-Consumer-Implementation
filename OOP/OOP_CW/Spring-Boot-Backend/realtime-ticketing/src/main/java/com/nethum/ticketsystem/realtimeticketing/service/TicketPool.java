@@ -40,7 +40,16 @@ public class TicketPool {
 
     private void broadcastLog(String message) {
         if (ticketLogController != null) {
-            ticketLogController.sendLogToClients(message);
+            // Filter or simplify the log message here before sending
+            String simplifiedMessage = message;
+
+            // Example: Extract only ticket-related messages
+            if (message.contains("Ticket Created:") || message.contains("consumed [TICKET ID")) {
+                simplifiedMessage = message.replaceAll("\\[CONSUMER: .+?\\]", ""); // Remove thread info from consumption logs
+            }
+
+            // Send to frontend
+            ticketLogController.sendLogToClients(simplifiedMessage);
         }
     }
 

@@ -31,5 +31,7 @@ public class TicketPoolSystemService {
             Customer customer = new Customer(ticketPool, configurationDTO.getCustomerRetrievalRate());
             customer.start();
         }
+        ticketLogController.sendLogToClients("System started with configuration: " + configurationDTO);
     }
+
 }
