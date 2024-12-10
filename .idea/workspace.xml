@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6b1ba78-5c5f-4539-b2f0-991a82b14f54" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/TicketPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/service/TicketPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/Vendor.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/model/Vendor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/controller/ConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/controller/ConfigurationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/model/ConfigurationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/model/ConfigurationDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/service/ConfigurationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/service/ConfigurationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/service/TicketPoolSystemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/java/com/nethum/ticketsystem/realtimeticketing/service/TicketPoolSystemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/OOP/OOP_CW/Frontend/frontend/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,20 +38,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/nethum/Documents/GitHub/Real-Time-Event-Ticketing-System-with-Advanced-Producer-Consumer-Implementation/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nethum/Documents/GitHub/Real-Time-Event-Ticketing-System-with-Advanced-Producer-Consumer-Implementation/OOP/OOP_CW/Spring-Boot-Backend/realtime-ticketing&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Real-Time-Event-Ticketing-System-with-Advanced-Producer-Consumer-Implementation" />
@@ -93,6 +86,7 @@
       <workItem from="1733589717429" duration="1274000" />
       <workItem from="1733675283983" duration="20000" />
       <workItem from="1733675338983" duration="659000" />
+      <workItem from="1733726103589" duration="30000" />
     </task>
     <servers />
   </component>

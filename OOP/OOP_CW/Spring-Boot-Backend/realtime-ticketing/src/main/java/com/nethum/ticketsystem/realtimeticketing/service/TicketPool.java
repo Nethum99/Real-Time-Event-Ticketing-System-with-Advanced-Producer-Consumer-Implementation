@@ -1,5 +1,7 @@
 package com.nethum.ticketsystem.realtimeticketing.service;
 
+import com.nethum.ticketsystem.realtimeticketing.controller.TicketLogController;
+
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.Lock;
@@ -20,18 +22,26 @@ public class TicketPool {
     private volatile boolean soldOut = false;
     private final Lock lock = new ReentrantLock();
 
-    public TicketPool(int maxTicketCapacity,int totalTickets){
+    private final TicketLogController ticketLogController;
+
+    public TicketPool(int maxTicketCapacity, int totalTickets, TicketLogController ticketLogController){
         this.maxTicketCapacity = maxTicketCapacity;
         this.totalTickets = totalTickets;
+        this.ticketLogController = ticketLogController;
 
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.FINE); // Set the handler's level to FINE
         logger.addHandler(consoleHandler);  // Attach the handler to the logger
-
         logger.setLevel(Level.FINE); // Set the logger's level to FINE
         logger.setUseParentHandlers(false); // Disable default parent handlers to avoid duplicate logs
 
         logger.info("Logger configured for TicketPool.");
+    }
+
+    private void broadcastLog(String message) {
+        if (ticketLogController != null) {
+            ticketLogController.sendLogToClients(message);
+        }
     }
 
     public boolean createTicket(int numberOfTickets)throws InterruptedException{
@@ -52,6 +62,9 @@ public class TicketPool {
                     ticketpool.add(ticketID);
                     ticketProduced++;
                     logger.log(Level.FINE,"[TICKET ID : "+ticketID+" ]");
+
+                    // Send real-time log to clients
+                    broadcastLog("Ticket Created: " + ticketID);
                 }
                 logger.log(Level.INFO,"Available total ticket count : "+(totalTickets-ticketProduced));
                 logger.log(Level.INFO,"Available ticket count in ticket pool : "+ticketpool.size());
@@ -80,6 +93,7 @@ public class TicketPool {
                UUID ticket = ticketpool.poll();
                if(ticket!=null){
                    logger.log(Level.FINE,"[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
+                   broadcastLog("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
                    ticketConsumed++;
                    return true;
                }

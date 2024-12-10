@@ -1,5 +1,4 @@
 package com.nethum.ticketsystem.realtimeticketing;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
