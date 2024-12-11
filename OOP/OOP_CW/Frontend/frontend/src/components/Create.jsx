@@ -12,9 +12,39 @@ const initial = {
   activeVendors: '3',
 };
 
+const TicketCountCard = ({ title, count, color }) => {
+  return (
+    <Paper
+      sx={{
+        padding: '1.5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: color,
+        color: 'white',
+        borderRadius: '12px',
+        boxShadow: '0 6px 10px rgba(0, 0, 0, 0.2)',
+      }}
+      elevation={3}
+    >
+      <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
+        {title}
+      </Typography>
+      <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+        {count}
+      </Typography>
+    </Paper>
+  );
+};
+
 const CreateTicketConfig = () => {
   const [form, setForm] = useState(initial);
   const [consoleLogs, setConsoleLogs] = useState([]); // All logs go here
+  const [ticketCounts, setTicketCounts] = useState({
+    totalAvailable: 0,
+    poolAvailable: 0,
+  }); // Specific data for ticket counts
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const logEndRef = useRef(null); // Reference for auto-scrolling
@@ -73,11 +103,32 @@ const CreateTicketConfig = () => {
 
   useEffect(() => {
     const updateConsoleLog = (message) => {
-      setConsoleLogs((prevLogs) => [...prevLogs, message]); // Add all messages to console logs
+      console.log("Incoming message:", message); // Debug incoming message format
+
+      try {
+        const parsedMessage = JSON.parse(message); // Parse structured message
+        if (parsedMessage.type === "count") {
+          if (parsedMessage.key === "Available total ticket count") {
+            setTicketCounts((prevCounts) => ({
+              ...prevCounts,
+              totalAvailable: parseInt(parsedMessage.value, 10),
+            }));
+          } else if (parsedMessage.key === "Available ticket count in ticket pool") {
+            setTicketCounts((prevCounts) => ({
+              ...prevCounts,
+              poolAvailable: parseInt(parsedMessage.value, 10),
+            }));
+          }
+        } else {
+          setConsoleLogs((prevLogs) => [...prevLogs, message]); // Add non-count messages to console logs
+        }
+      } catch (e) {
+        console.warn("Non-JSON message received:", message);
+        setConsoleLogs((prevLogs) => [...prevLogs, message]); // Handle plain text messages
+      }
     };
 
     websocketService.connectToWebSocket((message) => {
-      // All WebSocket messages go to the console logs
       updateConsoleLog(message);
     });
 
@@ -85,6 +136,12 @@ const CreateTicketConfig = () => {
       websocketService.disconnectWebSocket();
     };
   }, []);
+
+  useEffect(() => {
+    if (logEndRef.current) {
+      logEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [consoleLogs]); // Scroll to bottom whenever new logs are added
 
   const getLogStyle = (log) => {
     if (log.toLowerCase().includes('consumed')) {
@@ -95,12 +152,6 @@ const CreateTicketConfig = () => {
     }
     return { color: 'white' };
   };
-
-  useEffect(() => {
-    if (logEndRef.current) {
-      logEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [consoleLogs]); // Scroll to bottom whenever new logs are added
 
   return (
     <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -160,23 +211,16 @@ const CreateTicketConfig = () => {
           </Typography>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2} sx={{ marginTop: '0.5rem' }}>
-              {[
-                { label: 'Total Tickets', name: 'totalTickets' },
-                { label: 'Max Capacity', name: 'maxCapacity' },
-                { label: 'Ticket Release Rate', name: 'ticketReleaseRate' },
-                { label: 'Customer Retrieval Rate', name: 'customerRetrievalRate' },
-                { label: 'Active Customers', name: 'activeCustomers' },
-                { label: 'Active Vendors', name: 'activeVendors' },
-              ].map((field, index) => (
+              {[...Object.entries(initial)].map(([key, value], index) => (
                 <Grid item xs={12} key={index}>
                   <TextField
                     type="number"
                     sx={{ width: '100%' }}
-                    name={field.name}
+                    name={key}
                     onChange={handleFieldChange}
-                    label={field.label}
+                    label={key}
                     variant="outlined"
-                    value={form[field.name]}
+                    value={form[key]}
                     required
                     size="small"
                   />
@@ -193,10 +237,16 @@ const CreateTicketConfig = () => {
 
         {/* Right Section */}
         <Box sx={{ width: '70%', display: 'flex', flexDirection: 'column', paddingLeft: '1rem' }}>
+          {/* Ticket Counts Section */}
+          <Box sx={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+            <TicketCountCard title="Total Tickets" count={ticketCounts.totalAvailable} color="#4CAF50" />
+            <TicketCountCard title="Tickets in Pool" count={ticketCounts.poolAvailable} color="#FF9800" />
+          </Box>
+
           {/* Console Logs Section */}
           <Paper
             sx={{
-              height: '40%',
+              height: '50%',
               marginBottom: '1rem',
               padding: '1rem',
               backgroundColor: 'black',
@@ -254,7 +304,7 @@ const CreateTicketConfig = () => {
           {/* Graph Section */}
           <Paper
             sx={{
-              height: '55%',
+              height: '25%',
               padding: '1rem',
               backgroundColor: '#ffffff',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',

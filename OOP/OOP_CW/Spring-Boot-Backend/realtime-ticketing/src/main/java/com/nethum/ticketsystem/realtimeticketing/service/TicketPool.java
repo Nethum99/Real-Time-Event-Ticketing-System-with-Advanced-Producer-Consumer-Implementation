@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 
 public class TicketPool {
 
-    private static Logger logger = Logger.getLogger(TicketPool.class.getName());
+    private static final Logger logger = Logger.getLogger(TicketPool.class.getName());
+
 
     private final ConcurrentLinkedQueue<UUID> ticketpool = new ConcurrentLinkedQueue<UUID>();
     private final int maxTicketCapacity;
@@ -29,27 +30,24 @@ public class TicketPool {
         this.totalTickets = totalTickets;
         this.ticketLogController = ticketLogController;
 
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.FINE); // Set the handler's level to FINE
-        logger.addHandler(consoleHandler);  // Attach the handler to the logger
-        logger.setLevel(Level.FINE); // Set the logger's level to FINE
-        logger.setUseParentHandlers(false); // Disable default parent handlers to avoid duplicate logs
-
         logger.info("Logger configured for TicketPool.");
+        logger.fine("This is a FINE-level log for testing purposes.");
+        logger.warning("This is a WARNING-level log for testing purposes.");
     }
 
     private void broadcastLog(String message) {
         if (ticketLogController != null) {
-            // Filter or simplify the log message here before sending
-            String simplifiedMessage = message;
+            if (message.contains("Available total ticket count") || message.contains("Available ticket count in ticket pool")) {
+                String[] parts = message.split(":");
+                String key = parts[0].trim();
+                String value = parts.length > 1 ? parts[1].trim() : "0";
 
-            // Example: Extract only ticket-related messages
-            if (message.contains("Ticket Created:") || message.contains("consumed [TICKET ID")) {
-                simplifiedMessage = message.replaceAll("\\[CONSUMER: .+?\\]", ""); // Remove thread info from consumption logs
+                // Send structured message
+                ticketLogController.sendLogToClients(String.format("{\"type\":\"count\",\"key\":\"%s\",\"value\":%s}", key, value));
+            } else {
+                // Send other log messages as is
+                ticketLogController.sendLogToClients(message);
             }
-
-            // Send to frontend
-            ticketLogController.sendLogToClients(simplifiedMessage);
         }
     }
 
@@ -70,13 +68,15 @@ public class TicketPool {
                     UUID ticketID = UUID.randomUUID();
                     ticketpool.add(ticketID);
                     ticketProduced++;
-                    logger.log(Level.FINE,"[TICKET ID : "+ticketID+" ]");
+                    logger.info("[TICKET ID : " + ticketID + " ]");
 
                     // Send real-time log to clients
-                    broadcastLog("Ticket Created: " + ticketID);
+                    broadcastLog("Ticket Released: " + ticketID);
                 }
-                logger.log(Level.INFO,"Available total ticket count : "+(totalTickets-ticketProduced));
-                logger.log(Level.INFO,"Available ticket count in ticket pool : "+ticketpool.size());
+                logger.info("Available total ticket count: " + (totalTickets - ticketProduced));
+                logger.info("Available ticket count in ticket pool: " + ticketpool.size());
+                broadcastLog("Available total ticket count : "+(totalTickets-ticketProduced));
+                broadcastLog("Available ticket count in ticket pool : "+ticketpool.size());
                 return true;
             }
             else {
@@ -101,7 +101,7 @@ public class TicketPool {
            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
                UUID ticket = ticketpool.poll();
                if(ticket!=null){
-                   logger.log(Level.FINE,"[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
+                   logger.info("[CONSUMER: " + Thread.currentThread().getName() + "] consumed [TICKET ID " + ticket + " ]");
                    broadcastLog("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
                    ticketConsumed++;
                    return true;
