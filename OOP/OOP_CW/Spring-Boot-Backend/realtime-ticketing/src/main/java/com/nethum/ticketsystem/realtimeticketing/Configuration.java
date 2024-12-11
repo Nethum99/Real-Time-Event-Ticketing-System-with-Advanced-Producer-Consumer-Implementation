@@ -1,6 +1,13 @@
 package com.nethum.ticketsystem.realtimeticketing;
 
+import com.nethum.ticketsystem.realtimeticketing.controller.TicketLogController;
+
 import java.util.Scanner;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Logger;
 
 public class Configuration {
 
@@ -216,3 +223,4 @@ public class Configuration {
         this.totalTickets = totalTickets;
     }
 }
+

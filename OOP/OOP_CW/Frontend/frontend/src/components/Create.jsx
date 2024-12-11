@@ -1,7 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Typography, TextField, Button, Paper, Box, Snackbar, Grid, List, ListItem, ListItemText, AppBar, Toolbar } from '@mui/material';
+import { Typography, TextField, Button, Paper, Box, Snackbar, Grid, List, ListItem, ListItemText } from '@mui/material';
+import { Line } from 'react-chartjs-2';
 import websocketService from '../components/websocketService';
+import Navbar from './Navbar'; // Import the Navbar component
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const initial = {
   totalTickets: '50',
@@ -12,56 +26,58 @@ const initial = {
   activeVendors: '3',
 };
 
-const TicketCountCard = ({ title, count, color }) => {
-  return (
-    <Paper
-      sx={{
-        padding: '1.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: color,
-        color: 'white',
-        borderRadius: '12px',
-        boxShadow: '0 6px 10px rgba(0, 0, 0, 0.2)',
-      }}
-      elevation={3}
-    >
-      <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
-        {title}
-      </Typography>
-      <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-        {count}
-      </Typography>
-    </Paper>
-  );
-};
+const TicketCountCard = ({ title, count, color }) => (
+  <Paper
+    sx={{
+      padding: '1rem',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: color,
+      color: 'white',
+      borderRadius: '8px',
+      boxShadow: '0 6px 10px rgba(0, 0, 0, 0.2)',
+      width: '100%',
+    }}
+    elevation={3}
+  >
+    <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
+      {title}
+    </Typography>
+    <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+      {count || '0'} {/* Fallback for undefined values */}
+    </Typography>
+  </Paper>
+);
 
 const CreateTicketConfig = () => {
   const [form, setForm] = useState(initial);
-  const [consoleLogs, setConsoleLogs] = useState([]); // All logs go here
+  const [consoleLogs, setConsoleLogs] = useState([]);
   const [ticketCounts, setTicketCounts] = useState({
     totalAvailable: 0,
     poolAvailable: 0,
-  }); // Specific data for ticket counts
+  });
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: 'Total Available Tickets',
+        data: [],
+        borderColor: '#4CAF50',
+        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+      },
+      {
+        label: 'Tickets in Pool',
+        data: [],
+        borderColor: '#FF5722',
+        backgroundColor: 'rgba(255, 87, 34, 0.2)',
+      },
+    ],
+  });
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-  const logEndRef = useRef(null); // Reference for auto-scrolling
-
-  // Disable scrolling on load
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-
-    // Scroll to top on first load
-    window.scrollTo(0, 0);
-
-    return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-    };
-  }, []);
+  const logEndRef = useRef(null);
 
   const handleSnackbarClose = () => setSnackbarOpen(false);
 
@@ -101,36 +117,53 @@ const CreateTicketConfig = () => {
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
+  const getLogStyle = (log) => {
+    if (log.toLowerCase().includes('consumed')) {
+      return { color: 'white' };
+    }
+    if (log.toLowerCase().includes('ticket released')) {
+      return { color: 'yellow' };
+    }
+    return { color: 'white' };
+  };
+
   useEffect(() => {
-    const updateConsoleLog = (message) => {
-      console.log("Incoming message:", message); // Debug incoming message format
-
-      try {
-        const parsedMessage = JSON.parse(message); // Parse structured message
-        if (parsedMessage.type === "count") {
-          if (parsedMessage.key === "Available total ticket count") {
-            setTicketCounts((prevCounts) => ({
-              ...prevCounts,
-              totalAvailable: parseInt(parsedMessage.value, 10),
-            }));
-          } else if (parsedMessage.key === "Available ticket count in ticket pool") {
-            setTicketCounts((prevCounts) => ({
-              ...prevCounts,
-              poolAvailable: parseInt(parsedMessage.value, 10),
-            }));
-          }
-        } else {
-          setConsoleLogs((prevLogs) => [...prevLogs, message]); // Add non-count messages to console logs
+    websocketService.connectToWebSocket(
+      (logMessage) => {
+        console.log('Log Callback:', logMessage);
+        setConsoleLogs((prevLogs) => [...prevLogs, logMessage.message]);
+      },
+      (countMessage) => {
+        console.log('Count Callback:', countMessage);
+        if (countMessage.key === 'Available total ticket count') {
+          setTicketCounts((prev) => ({ ...prev, totalAvailable: parseInt(countMessage.value, 10) }));
+          setChartData((prev) => ({
+            ...prev,
+            labels: [...prev.labels, new Date().toLocaleTimeString()],
+            datasets: [
+              {
+                ...prev.datasets[0],
+                data: [...prev.datasets[0].data, parseInt(countMessage.value, 10)],
+              },
+              { ...prev.datasets[1] },
+            ],
+          }));
+        } else if (countMessage.key === 'Available ticket count in ticket pool') {
+          setTicketCounts((prev) => ({ ...prev, poolAvailable: parseInt(countMessage.value, 10) }));
+          setChartData((prev) => ({
+            ...prev,
+            labels: [...prev.labels, new Date().toLocaleTimeString()],
+            datasets: [
+              { ...prev.datasets[0] },
+              {
+                ...prev.datasets[1],
+                data: [...prev.datasets[1].data, parseInt(countMessage.value, 10)],
+              },
+            ],
+          }));
         }
-      } catch (e) {
-        console.warn("Non-JSON message received:", message);
-        setConsoleLogs((prevLogs) => [...prevLogs, message]); // Handle plain text messages
       }
-    };
-
-    websocketService.connectToWebSocket((message) => {
-      updateConsoleLog(message);
-    });
+    );
 
     return () => {
       websocketService.disconnectWebSocket();
@@ -141,159 +174,89 @@ const CreateTicketConfig = () => {
     if (logEndRef.current) {
       logEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [consoleLogs]); // Scroll to bottom whenever new logs are added
-
-  const getLogStyle = (log) => {
-    if (log.toLowerCase().includes('consumed')) {
-      return { color: 'yellow' };
-    }
-    if (log.toLowerCase().includes('ticket created')) {
-      return { color: 'red' };
-    }
-    return { color: 'white' };
-  };
+  }, [consoleLogs]);
 
   return (
     <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      {/* Navigation Bar */}
-      <AppBar position="static" sx={{ background: 'linear-gradient(to right, #ADD8E6, #4B9CD3)' }}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontFamily: 'revert',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              color: 'white',
-            }}
-          >
-            Ticketing System
-          </Typography>
-          <Button
-            variant="outlined"
-            sx={{ color: 'white', borderColor: 'white', marginRight: '1rem' }}
-            href="/start"
-          >
-            Start
-          </Button>
-          <Button variant="outlined" sx={{ color: 'white', borderColor: 'white' }} href="/stop">
-            Stop
-          </Button>
-        </Toolbar>
-      </AppBar>
+      {/* Navbar */}
+      <Navbar />
 
-      {/* Main Content */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', paddingTop: '2rem', overflow: 'hidden' }}>
-        {/* Left Section */}
-        <Paper
-          sx={{
-            width: '30%',
-            padding: '1rem',
-            display: 'flex',
-            flexDirection: 'column',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            borderRadius: '8px',
-            backgroundColor: '#ffffff',
-          }}
-          elevation={3}
-        >
-          <Typography
-            sx={{
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-              fontSize: '1.5rem',
-              textAlign: 'center',
-            }}
-          >
-            System Configuration
-          </Typography>
-          <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2} sx={{ marginTop: '0.5rem' }}>
-              {[...Object.entries(initial)].map(([key, value], index) => (
-                <Grid item xs={12} key={index}>
-                  <TextField
-                    type="number"
-                    sx={{ width: '100%' }}
-                    name={key}
-                    onChange={handleFieldChange}
-                    label={key}
-                    variant="outlined"
-                    value={form[key]}
-                    required
-                    size="small"
-                  />
-                </Grid>
-              ))}
-            </Grid>
-            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-              <Button sx={{ width: '80%' }} variant="contained" type="submit">
-                Submit
-              </Button>
-            </Box>
-          </form>
-        </Paper>
-
-        {/* Right Section */}
-        <Box sx={{ width: '70%', display: 'flex', flexDirection: 'column', paddingLeft: '1rem' }}>
-          {/* Ticket Counts Section */}
-          <Box sx={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-            <TicketCountCard title="Total Tickets" count={ticketCounts.totalAvailable} color="#4CAF50" />
-            <TicketCountCard title="Tickets in Pool" count={ticketCounts.poolAvailable} color="#FF9800" />
-          </Box>
-
-          {/* Console Logs Section */}
+      {/* Content Layout */}
+      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: '1rem', padding: '1rem' }}>
+        {/* Left Section - Form */}
+        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <Paper
             sx={{
-              height: '50%',
-              marginBottom: '1rem',
-              padding: '1rem',
-              backgroundColor: 'black',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              padding: '1.5rem',
               borderRadius: '8px',
-              display: 'flex',
-              flexDirection: 'column',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              background: 'linear-gradient(to right, #E0E0E0, #FFFFFF)',
+              border: '2px solid #B0BEC5',
             }}
-            elevation={3}
           >
-            <Typography
-              variant="h6"
-              sx={{
-                marginBottom: '1rem',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                color: 'white',
-                position: 'sticky', // Keep heading fixed
-                top: 0,
-                backgroundColor: 'black',
-                zIndex: 1,
-                padding: '0.5rem',
-              }}
-            >
+            <Typography sx={{ fontWeight: 'bold', fontSize: '1.5rem', textAlign: 'center', marginBottom: '1rem' }}>
+              System Configuration
+            </Typography>
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                {Object.entries(initial).map(([key, value]) => (
+                  <Grid item xs={12} key={key}>
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      name={key}
+                      value={form[key]}
+                      onChange={handleFieldChange}
+                      label={key.replace(/([A-Z])/g, ' $1').toUpperCase()}
+                      required
+                      sx={{
+                        fontSize: '1.2rem',
+                        borderRadius: '5px',
+                      }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                sx={{ marginTop: '1rem', backgroundColor: '#4CAF50', color: 'white', '&:hover': { backgroundColor: '#388E3C' } }}
+              >
+                Submit
+              </Button>
+            </form>
+          </Paper>
+        </Box>
+
+        {/* Right Section */}
+        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* Ticket Counts */}
+          <Box sx={{ display: 'flex', gap: '1rem', marginBottom: '1rem', justifyContent: 'center' }}>
+            <TicketCountCard title="Total Available Tickets" count={ticketCounts.totalAvailable} color="#4CAF50" />
+            <TicketCountCard title="Tickets in Pool" count={ticketCounts.poolAvailable} color="#FF5722" />
+          </Box>
+
+          {/* Console Logs */}
+          <Paper
+            sx={{
+              flex: 1,
+              backgroundColor: '#000',
+              color: '#fff',
+              borderRadius: '8px',
+              padding: '1rem',
+              overflowY: 'auto',
+              maxHeight: '25vh',
+            }}
+          >
+            <Typography variant="h6" sx={{ textAlign: 'center', marginBottom: '1rem' }}>
               Console Logs
             </Typography>
-            <List
-              sx={{
-                flex: 1,
-                overflowY: 'auto', // Enable scrolling only inside logs
-              }}
-            >
+            <List>
               {consoleLogs.map((log, index) => (
-                <ListItem
-                  key={index}
-                  sx={{
-                    padding: '8px',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                  }}
-                >
+                <ListItem key={index} sx={{ padding: '0.5rem' }}>
                   <ListItemText
-                    primary={log}
-                    primaryTypographyProps={{
-                      fontSize: '0.9rem',
-                      fontFamily: 'monospace',
-                      ...getLogStyle(log),
-                    }}
+                    primary={<Typography sx={{ ...getLogStyle(log), fontSize: '0.875rem' }}>{log}</Typography>}
                   />
                 </ListItem>
               ))}
@@ -301,34 +264,53 @@ const CreateTicketConfig = () => {
             </List>
           </Paper>
 
-          {/* Graph Section */}
+          {/* Chart Section */}
           <Paper
             sx={{
-              height: '25%',
-              padding: '1rem',
-              backgroundColor: '#ffffff',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              flex: 1,
               borderRadius: '8px',
+              padding: '1rem',
+              maxHeight: '30vh',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             }}
-            elevation={3}
           >
-            <Typography variant="h6" sx={{ textAlign: 'center', fontWeight: 'bold', marginBottom: '1rem' }}>
-              Graph
+            <Typography variant="h6" sx={{ textAlign: 'center', marginBottom: '1rem', fontWeight: 'bold' }}>
+              Ticket Count Over Time
             </Typography>
-            <Box sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Typography>No data to display</Typography>
-            </Box>
+            <Line
+              data={chartData}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                  title: {
+                    display: true,
+                    text: 'Real-Time Ticket Data',
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: 'Time',
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: 'Tickets',
+                    },
+                  },
+                },
+              }}
+            />
           </Paper>
         </Box>
       </Box>
 
-      {/* Snackbar */}
-      <Snackbar
-        open={snackbarOpen}
-        message={snackbarMessage}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-      />
+      <Snackbar open={snackbarOpen} autoHideDuration={4000} onClose={handleSnackbarClose} message={snackbarMessage} />
     </Box>
   );
 };

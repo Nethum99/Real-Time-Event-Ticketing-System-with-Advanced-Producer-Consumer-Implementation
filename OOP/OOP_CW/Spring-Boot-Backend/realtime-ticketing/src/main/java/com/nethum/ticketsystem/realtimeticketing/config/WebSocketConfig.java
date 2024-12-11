@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         // Broadcast to all clients subscribed to topics under "/tickets"
-        config.enableSimpleBroker("/logs");
+        config.enableSimpleBroker("/logs","/counts");
         // Prefix for messages sent from clients to the server
         config.setApplicationDestinationPrefixes("/app");
     }

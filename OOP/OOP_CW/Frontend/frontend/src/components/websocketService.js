@@ -4,7 +4,7 @@ import SockJS from "sockjs-client";
 const websocketService = {
   socket: null,
 
-  connectToWebSocket: function (callback) {
+  connectToWebSocket: function (logCallback, countCallback) {
     if (this.socket) {
       console.log("WebSocket is already connected.");
       return this.socket;
@@ -18,16 +18,28 @@ const websocketService = {
       onConnect: () => {
         console.log("WebSocket connection established.");
 
-        // Subscribe to the topic
+        // Subscribe to log messages
         this.socket.subscribe("/logs/ticket", (message) => {
-          console.log("Received message:", message.body);
-          if (callback) {
+          console.log("Received log message:", message.body);
+          if (logCallback) {
             try {
-              const parsedMessage = JSON.parse(message.body);
-              const logMessage = parsedMessage.message; // Extract the user-friendly message
-              callback(logMessage); // Pass user-friendly message to the callback
+              const parsedMessage = JSON.parse(message.body); // Parse the structured JSON message
+              logCallback(parsedMessage); // Pass the entire parsed object
             } catch (error) {
-              console.error("Error parsing WebSocket message:", error.message, message.body);
+              console.error("Error parsing log message:", error.message, message.body);
+            }
+          }
+        });
+
+        // Subscribe to count updates
+        this.socket.subscribe("/counts/ticket",(message)=> {
+          console.log("Received count update:", message.body);
+          if (countCallback) {
+            try {
+              const parsedMessage = JSON.parse(message.body); // Parse the structured JSON message
+              countCallback(parsedMessage); // Pass the entire parsed object
+            } catch (error) {
+              console.error("Error parsing count message:", error.message, message.body);
             }
           }
         });

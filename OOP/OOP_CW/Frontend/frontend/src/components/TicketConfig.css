@@ -1,0 +1,110 @@
+/* CreateTicketConfig.css */
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+    padding: 1rem;
+  }
+  
+  .left-section {
+    width: 30%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  
+  .left-section-title {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .textfield {
+    width: 100%;
+  }
+  
+  .form-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .form-button button {
+    width: 80%;
+  }
+  
+  .right-section {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+  }
+  
+  .console-log-section {
+    height: 40%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .console-log-title {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+  }
+  
+  .console-log-list {
+    height: calc(100% - 2rem);
+    overflow-y: auto;
+    border-radius: 4px;
+  }
+  
+  .console-log-item {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .console-log-text {
+    font-size: 0.9rem;
+    font-family: monospace;
+    color: white;
+  }
+  
+  .graph-section {
+    height: 55%;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .graph-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .graph-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .snackbar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  

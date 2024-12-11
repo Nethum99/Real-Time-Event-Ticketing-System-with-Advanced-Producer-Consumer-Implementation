@@ -37,19 +37,31 @@ public class TicketPool {
 
     private void broadcastLog(String message) {
         if (ticketLogController != null) {
-            if (message.contains("Available total ticket count") || message.contains("Available ticket count in ticket pool")) {
+            if (message.contains("Available total ticket count")) {
                 String[] parts = message.split(":");
-                String key = parts[0].trim();
                 String value = parts.length > 1 ? parts[1].trim() : "0";
-
-                // Send structured message
-                ticketLogController.sendLogToClients(String.format("{\"type\":\"count\",\"key\":\"%s\",\"value\":%s}", key, value));
+                ticketLogController.sendCountToClients(
+                        String.format("{\"type\":\"count\",\"key\":\"Available total ticket count\",\"value\":%s}", value)
+                );
+                logger.info("Broadcasting Available total ticket count: " + value);
+                System.out.println("Broadcasting debug count update: " + message);
+            } else if (message.contains("Available ticket count in ticket pool")) {
+                String[] parts = message.split(":");
+                String value = parts.length > 1 ? parts[1].trim() : "0";
+                ticketLogController.sendCountToClients(
+                        String.format("{\"type\":\"count\",\"key\":\"Available ticket count in ticket pool\",\"value\":%s}", value)
+                );
+                logger.info("Broadcasting Available ticket count in ticket pool: " + value);
             } else {
-                // Send other log messages as is
-                ticketLogController.sendLogToClients(message);
+                ticketLogController.sendLogToClients(message); // For other log messages
+                logger.info("Broadcasting log message: " + message);
             }
         }
     }
+
+
+
+
 
     public boolean createTicket(int numberOfTickets)throws InterruptedException{
         lock.lock();
@@ -93,43 +105,43 @@ public class TicketPool {
 
 
     public boolean consumeTicket(int numberOfTickets) throws InterruptedException{
-       lock.lock();
-       try{
-           if(!ticketpool.isEmpty()){
-            logger.info("\n>>> Tickets Consumed :");
-           }
-           for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
-               UUID ticket = ticketpool.poll();
-               if(ticket!=null){
-                   logger.info("[CONSUMER: " + Thread.currentThread().getName() + "] consumed [TICKET ID " + ticket + " ]");
-                   broadcastLog("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
-                   ticketConsumed++;
-                   return true;
-               }
-               else{
-                   logger.warning("Consumer "+Thread.currentThread().getName()+" is waiting");
-               }
+        lock.lock();
+        try{
+            if(!ticketpool.isEmpty()){
+                logger.info("\n>>> Tickets Consumed :");
+            }
+            for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
+                UUID ticket = ticketpool.poll();
+                if(ticket!=null){
+                    logger.info("[CONSUMER: " + Thread.currentThread().getName() + "] consumed [TICKET ID " + ticket + " ]");
+                    broadcastLog("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
+                    ticketConsumed++;
+                    return true;
+                }
+                else{
+                    logger.warning("Consumer "+Thread.currentThread().getName()+" is waiting");
+                }
 
-           }
-           if(ticketConsumed>=totalTickets){
-               logger.info("All tickets are sold out!. System is stopping");
-               return false;
-           }
-           return true;
-       }
-       finally {
-           lock.unlock();
-       }
+            }
+            if(ticketConsumed>=totalTickets){
+                logger.info("All tickets are sold out!. System is stopping");
+                return false;
+            }
+            return true;
+        }
+        finally {
+            lock.unlock();
+        }
     }
 
     public boolean isSoldOut(){
-     lock.lock();
-     try {
-         return soldOut;
-     }
-     finally {
-         lock.unlock();
-     }
+        lock.lock();
+        try {
+            return soldOut;
+        }
+        finally {
+            lock.unlock();
+        }
 
     }
 
