@@ -15,7 +15,7 @@ public class Customer extends Thread {
               if(!ticketPool.consumeTicket(customerRetrievalRate)){
                   break;
               }
-              Thread.sleep(600);
+              Thread.sleep(500);
             }
             catch (Exception e){
                 e.printStackTrace();
