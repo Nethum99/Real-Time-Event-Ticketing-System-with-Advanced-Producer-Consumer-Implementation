@@ -16,7 +16,7 @@ public class Vendor extends Thread{
                 if(!ticketPool.createTicket(ticketReleaseRate)){
                     break;
                 }
-                Thread.sleep(500);
+                Thread.sleep(600);
             }
             catch (Exception e){
                 e.printStackTrace();
