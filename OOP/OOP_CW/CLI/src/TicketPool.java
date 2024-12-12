@@ -16,7 +16,7 @@ public class TicketPool {
     private final int totalTickets;
     private int ticketProduced = 0;     //How many tickets produced in system according latest user input
     private int ticketConsumed = 0;     //How many tickets consumed in system according latest user input
-    private volatile boolean soldOut = false;       // boolean flag to tickets are soldout or not
+    private volatile boolean soldOut = false;       // boolean flag to tickets are soldout or not.Volatile is most accurate and thread safe mathod to indicate threads that the value changes
     private final Lock lock = new ReentrantLock();
 
     private final BufferedWriter logWriter;

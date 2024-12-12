@@ -10,7 +10,6 @@ public class Vendor extends Thread{
     public Vendor(TicketPool ticketPool,int ticketReleaseRate){
         this.ticketPool = ticketPool;
         this.ticketReleaseRate = ticketReleaseRate;
-
     }
 
     /**
