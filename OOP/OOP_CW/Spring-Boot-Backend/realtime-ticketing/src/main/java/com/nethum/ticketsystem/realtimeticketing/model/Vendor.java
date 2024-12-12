@@ -13,6 +13,9 @@ public class Vendor extends Thread{
 
     }
 
+    /**
+     * run method
+     */
     @Override
     public void run(){
         while (!ticketPool.isSoldOut()){

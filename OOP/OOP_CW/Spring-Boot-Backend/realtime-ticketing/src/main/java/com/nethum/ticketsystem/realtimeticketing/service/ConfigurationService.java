@@ -16,10 +16,10 @@ public class ConfigurationService {
 
 
     public void readBody(ConfigurationDTO configurationDTO) {
-        ticketPoolSystemService.startSystem(configurationDTO);
+        ticketPoolSystemService.startSystem(configurationDTO); //Send user data to proccessing into ticketpool
     }
 
     public void saveBody(ConfigurationDTO configurationDTO) {
-        configurationRepo.save(configurationDTO);
+        configurationRepo.save(configurationDTO);       //Save user data to data base
     }
 }

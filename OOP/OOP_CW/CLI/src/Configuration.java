@@ -140,7 +140,7 @@ public class Configuration {
             try{
                 System.out.print("Do you want to start the system? (yes/no): ");
                 tempConfirmation = scanner.next();
-                if(tempConfirmation.equalsIgnoreCase("y")) {
+                if(tempConfirmation.equalsIgnoreCase("yes")) {
                     this.confirmed = true;
                     validation = false;
 

@@ -24,7 +24,7 @@ public class TicketLogController {
     }
     public void sendCountToClients(String countMessage) {
         messagingTemplate.convertAndSend("/counts/ticket", countMessage);
-        System.out.println("For debugging int sencCountClients method "+countMessage);
+
 
     }
 

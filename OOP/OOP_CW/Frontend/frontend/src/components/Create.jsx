@@ -18,12 +18,12 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const initial = {
-  totalTickets: '50',
-  maxCapacity: '5',
-  ticketReleaseRate: '2',
-  customerRetrievalRate: '3',
-  activeCustomers: '2',
-  activeVendors: '3',
+  totalTickets: '100',
+  maxCapacity: '10',
+  ticketReleaseRate: '4',
+  customerRetrievalRate: '6',
+  activeCustomers: '8',
+  activeVendors: '2',
 };
 
 const TicketCountCard = ({ title, count, color }) => (

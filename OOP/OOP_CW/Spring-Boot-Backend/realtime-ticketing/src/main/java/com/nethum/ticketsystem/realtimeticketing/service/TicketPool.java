@@ -18,12 +18,12 @@ public class TicketPool {
     private final ConcurrentLinkedQueue<UUID> ticketpool = new ConcurrentLinkedQueue<UUID>();
     private final int maxTicketCapacity;
     private final int totalTickets;
-    private int ticketProduced = 0;
-    private int ticketConsumed = 0;
-    private volatile boolean soldOut = false;
+    private int ticketProduced = 0;     //How many tickets produced in system according latest user input
+    private int ticketConsumed = 0;     //How many tickets consumed in system according latest user input
+    private volatile boolean soldOut = false;  // boolean flag to tickets are soldout or not
     private final Lock lock = new ReentrantLock();
 
-    private final TicketLogController ticketLogController;
+    private final TicketLogController ticketLogController;      //The class that have responsibilty to pass the logs throght websocket
 
     public TicketPool(int maxTicketCapacity, int totalTickets, TicketLogController ticketLogController){
         this.maxTicketCapacity = maxTicketCapacity;
@@ -35,7 +35,7 @@ public class TicketPool {
         logger.warning("This is a WARNING-level log for testing purposes.");
     }
 
-    private void broadcastLog(String message) {
+    private void broadcastLog(String message) {     //This method declared in TicketLogController class and this is the checker of what data should be passed that class
         if (ticketLogController != null) {
             if (message.contains("Available total ticket count")) {
                 String[] parts = message.split(":");
@@ -59,9 +59,14 @@ public class TicketPool {
     }
 
 
-
-
-
+    /**
+     *
+     * @param numberOfTickets
+     * numberOfTickets similar value that the user enter ticket releasring rate.
+     * This is the class create tickets
+     * @return
+     * @throws InterruptedException
+     */
     public boolean createTicket(int numberOfTickets)throws InterruptedException{
         lock.lock();
         try{
@@ -70,8 +75,9 @@ public class TicketPool {
                 return false;
             }
 
+
             int ticketToProduce = Math.min(numberOfTickets,maxTicketCapacity-ticketpool.size());
-            ticketToProduce = Math.min(ticketToProduce,totalTickets-ticketProduced);
+            ticketToProduce = Math.min(ticketToProduce,totalTickets-ticketProduced);    //This calculation work for calculate how many rest oftickets have to produce in the iteration
 
             if(ticketToProduce>0){
                 logger.info("\n>>> Tickets Released :");
@@ -102,15 +108,21 @@ public class TicketPool {
     }
 
 
-
+    /**
+     * This is the method the deleting tickets from ticketpool otherwise this is the method that consumers buy tickets
+     *
+     * @param numberOfTickets
+     * @return
+     * @throws InterruptedException
+     */
     public boolean consumeTicket(int numberOfTickets) throws InterruptedException{
         lock.lock();
         try{
-            if(!ticketpool.isEmpty()){
+            if(!ticketpool.isEmpty()){      //looking for ticketpool empty or not
                 logger.info("\n>>> Tickets Consumed :");
             }
             for(int i = 0;i<numberOfTickets && !ticketpool.isEmpty();i++){
-                UUID ticket = ticketpool.poll();
+                UUID ticket = ticketpool.poll();    //deleting latest ticeket in queue and assign it ticket
                 if(ticket!=null){
                     logger.info("[CONSUMER: " + Thread.currentThread().getName() + "] consumed [TICKET ID " + ticket + " ]");
                     broadcastLog("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
@@ -133,10 +145,10 @@ public class TicketPool {
         }
     }
 
-    public boolean isSoldOut(){
+    public boolean isSoldOut(){         //notice to other method tickets are soldout or not by returning "soldOut".
         lock.lock();
         try {
-            return soldOut;
+            return soldOut; //
         }
         finally {
             lock.unlock();
