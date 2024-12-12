@@ -184,7 +184,7 @@ const CreateTicketConfig = () => {
       {/* Content Layout */}
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: '1rem', padding: '1rem' }}>
         {/* Left Section - Form */}
-        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <Paper
             sx={{
               padding: '1.5rem',
@@ -226,6 +226,30 @@ const CreateTicketConfig = () => {
                 Submit
               </Button>
             </form>
+          </Paper>
+
+          <Paper sx={{ marginTop: '0.5rem', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem', color: '#4B9CD3', fontSize: '1.2rem' }}>
+              Field Descriptions
+            </Typography>
+            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              <strong>Total Number of Tickets:</strong> Maximum tickets all vendors can produce.
+            </Typography>
+            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              <strong>Max Capacity in Ticket Pool:</strong> Maximum tickets allowed in the pool at one time.
+            </Typography>
+            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              <strong>Ticket Release Rate:</strong> Number of tickets each vendor produces per unit time.
+            </Typography>
+            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              <strong>Customer Retrieval Rate:</strong> Number of tickets each customer retrieves per unit time.
+            </Typography>
+            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
+              <strong>Number of Active Customers:</strong> Consumers concurrently retrieving tickets.
+            </Typography>
+            <Typography sx={{ fontSize: '0.9rem', lineHeight: 1.5 }}>
+              <strong>Number of Active Vendors:</strong> Producers concurrently generating tickets.
+            </Typography>
           </Paper>
         </Box>
 

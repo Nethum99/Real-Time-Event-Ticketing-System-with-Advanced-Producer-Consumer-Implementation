@@ -1,0 +1,555 @@
+
+>>> Tickets Released :
+[TICKET ID : e5992571-0d93-4994-ac8c-09eca409598d ]
+[TICKET ID : 9d8e9799-d69a-4271-a3c4-dcb269e95254 ]
+[TICKET ID : 7b9b4ce9-c35d-4ac6-96a5-2e15940f9b92 ]
+Available total ticket count : 97
+Available ticket count in ticket pool : 3
+
+>>> Tickets Released :
+[TICKET ID : c5804a2f-cc53-4390-96e8-4d8767a380a5 ]
+[TICKET ID : 7c2d7620-9c03-4858-875f-bff367238d69 ]
+[TICKET ID : 9ed258bb-113d-4c95-88a7-0485e5329941 ]
+Available total ticket count : 94
+Available ticket count in ticket pool : 6
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID e5992571-0d93-4994-ac8c-09eca409598d ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 9d8e9799-d69a-4271-a3c4-dcb269e95254 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 7b9b4ce9-c35d-4ac6-96a5-2e15940f9b92 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID c5804a2f-cc53-4390-96e8-4d8767a380a5 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 7c2d7620-9c03-4858-875f-bff367238d69 ]
+
+>>> Tickets Released :
+[TICKET ID : 0f578a08-a33c-4af5-8473-4f8c06842c82 ]
+[TICKET ID : 4fb8ec87-7220-4a7b-8f7a-74a65d53cdf4 ]
+[TICKET ID : e22c173d-1b0c-488b-93c8-7c1481954411 ]
+Available total ticket count : 91
+Available ticket count in ticket pool : 4
+
+>>> Tickets Released :
+[TICKET ID : 39821963-4844-4a62-b69e-b6b0ed391f9b ]
+[TICKET ID : 967ef886-255e-4b07-911d-0f1fae1ccfa7 ]
+[TICKET ID : 9a093dac-6eda-4a71-ade7-818fe8c5fc4c ]
+Available total ticket count : 88
+Available ticket count in ticket pool : 7
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 9ed258bb-113d-4c95-88a7-0485e5329941 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 0f578a08-a33c-4af5-8473-4f8c06842c82 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 4fb8ec87-7220-4a7b-8f7a-74a65d53cdf4 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID e22c173d-1b0c-488b-93c8-7c1481954411 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 39821963-4844-4a62-b69e-b6b0ed391f9b ]
+
+>>> Tickets Released :
+[TICKET ID : 3a621eaf-ad69-4f8b-b522-bc3e8d386a3a ]
+[TICKET ID : 1610f3de-a619-428b-b541-7ab753c7d1fd ]
+[TICKET ID : 62127c8e-3205-4c4f-bc22-86e031ea61da ]
+Available total ticket count : 85
+Available ticket count in ticket pool : 5
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 967ef886-255e-4b07-911d-0f1fae1ccfa7 ]
+
+>>> Tickets Released :
+[TICKET ID : e2e74821-3738-4c9a-97cf-b5148aa6dd19 ]
+[TICKET ID : 086a4795-824c-4c78-8479-2d19834cb009 ]
+[TICKET ID : d2caf5a3-9020-427c-ad3d-9cf3bba5272d ]
+Available total ticket count : 82
+Available ticket count in ticket pool : 7
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 9a093dac-6eda-4a71-ade7-818fe8c5fc4c ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 3a621eaf-ad69-4f8b-b522-bc3e8d386a3a ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 1610f3de-a619-428b-b541-7ab753c7d1fd ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 62127c8e-3205-4c4f-bc22-86e031ea61da ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID e2e74821-3738-4c9a-97cf-b5148aa6dd19 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 086a4795-824c-4c78-8479-2d19834cb009 ]
+
+>>> Tickets Released :
+[TICKET ID : 41924583-cbba-408a-ae1c-d1ebb448e812 ]
+[TICKET ID : a1f7b3f9-ff79-4902-acac-ee5fc37d9d19 ]
+[TICKET ID : 7c445959-7608-4598-837f-1c83be0cb841 ]
+Available total ticket count : 79
+Available ticket count in ticket pool : 4
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID d2caf5a3-9020-427c-ad3d-9cf3bba5272d ]
+
+>>> Tickets Released :
+[TICKET ID : dc0b6334-0448-4285-aae8-2bd8bba0af38 ]
+[TICKET ID : 688f4306-ebd7-4f32-9a09-2e0f14fb5ad0 ]
+[TICKET ID : ab6f34de-62ef-4e2f-9bf4-2bfff4046399 ]
+Available total ticket count : 76
+Available ticket count in ticket pool : 6
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 41924583-cbba-408a-ae1c-d1ebb448e812 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID a1f7b3f9-ff79-4902-acac-ee5fc37d9d19 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 7c445959-7608-4598-837f-1c83be0cb841 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID dc0b6334-0448-4285-aae8-2bd8bba0af38 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 688f4306-ebd7-4f32-9a09-2e0f14fb5ad0 ]
+
+>>> Tickets Released :
+[TICKET ID : 64e1af6f-1fd8-4495-886b-810dd9aeade0 ]
+[TICKET ID : beb43958-6a96-48e2-ac86-b1cba9cff3aa ]
+[TICKET ID : 4b37dd97-b921-4dbd-a2a5-a7cc1cd3780d ]
+Available total ticket count : 73
+Available ticket count in ticket pool : 4
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID ab6f34de-62ef-4e2f-9bf4-2bfff4046399 ]
+
+>>> Tickets Released :
+[TICKET ID : 3f9e8cde-b76b-4701-8a66-e9e4ab0439fe ]
+[TICKET ID : 64a6c315-5fb8-4c77-a70b-b4dee7f96afd ]
+[TICKET ID : 36d659ba-960e-415b-bd43-6d963a05b51d ]
+Available total ticket count : 70
+Available ticket count in ticket pool : 6
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 64e1af6f-1fd8-4495-886b-810dd9aeade0 ]
+
+>>> Tickets Released :
+[TICKET ID : 8ee4a116-50dc-42a4-9619-4e7a41bd8ce0 ]
+[TICKET ID : 47cc3f8c-c916-4663-a0b1-e4cbbaf54277 ]
+[TICKET ID : 033b64c4-15fb-4010-a3a9-f26e861e51c1 ]
+Available total ticket count : 67
+Available ticket count in ticket pool : 8
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID beb43958-6a96-48e2-ac86-b1cba9cff3aa ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 4b37dd97-b921-4dbd-a2a5-a7cc1cd3780d ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 3f9e8cde-b76b-4701-8a66-e9e4ab0439fe ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 64a6c315-5fb8-4c77-a70b-b4dee7f96afd ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 36d659ba-960e-415b-bd43-6d963a05b51d ]
+
+>>> Tickets Released :
+[TICKET ID : 88b6294f-05ac-4ec2-986f-fa825fe87beb ]
+[TICKET ID : f08f11bc-bb5e-4b50-be02-915e6ccc5e21 ]
+[TICKET ID : 10d99962-d3c4-43ac-96f1-207864cfa5a0 ]
+Available total ticket count : 64
+Available ticket count in ticket pool : 6
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 8ee4a116-50dc-42a4-9619-4e7a41bd8ce0 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 47cc3f8c-c916-4663-a0b1-e4cbbaf54277 ]
+
+>>> Tickets Released :
+[TICKET ID : 276aa342-051f-4ce0-841d-8c319aeecce0 ]
+[TICKET ID : ebf07faa-fdd1-46d9-aa5a-d9deb000d164 ]
+[TICKET ID : e63d0bd7-665c-4357-9a73-de297e4fdd85 ]
+Available total ticket count : 61
+Available ticket count in ticket pool : 7
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 033b64c4-15fb-4010-a3a9-f26e861e51c1 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 88b6294f-05ac-4ec2-986f-fa825fe87beb ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID f08f11bc-bb5e-4b50-be02-915e6ccc5e21 ]
+
+>>> Tickets Released :
+[TICKET ID : 8c21500a-2f18-47ae-9130-e26bb5fb61e0 ]
+[TICKET ID : 642b4640-cdc9-426e-a5ad-59f3e8c41957 ]
+[TICKET ID : 037e6eef-73b9-4da7-b5f3-c1ed9a3ab03e ]
+Available total ticket count : 58
+Available ticket count in ticket pool : 7
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 10d99962-d3c4-43ac-96f1-207864cfa5a0 ]
+
+>>> Tickets Released :
+[TICKET ID : 6f781d9a-482c-4da2-a7c7-1573682e873f ]
+[TICKET ID : 8591fd90-32fe-42a5-b762-34f5514c9e8e ]
+[TICKET ID : 78698e26-4120-4c3e-955c-b5b2584159f9 ]
+Available total ticket count : 55
+Available ticket count in ticket pool : 9
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 276aa342-051f-4ce0-841d-8c319aeecce0 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID ebf07faa-fdd1-46d9-aa5a-d9deb000d164 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID e63d0bd7-665c-4357-9a73-de297e4fdd85 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 8c21500a-2f18-47ae-9130-e26bb5fb61e0 ]
+
+>>> Tickets Released :
+[TICKET ID : df3177a4-b9c3-4ed9-9aa6-c6d820f52725 ]
+[TICKET ID : c7792d5a-de24-4871-b339-f7bdc9510817 ]
+[TICKET ID : d3204154-9396-4290-8580-10009a2efe50 ]
+Available total ticket count : 52
+Available ticket count in ticket pool : 8
+
+>>> Tickets Released :
+[TICKET ID : 9f854ce0-8062-4f60-a206-e75fabf9df28 ]
+[TICKET ID : 9854ab85-452b-4861-8efb-a5a63a54959e ]
+Available total ticket count : 50
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 642b4640-cdc9-426e-a5ad-59f3e8c41957 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 037e6eef-73b9-4da7-b5f3-c1ed9a3ab03e ]
+
+>>> Tickets Released :
+[TICKET ID : d0fd1ea9-b5e1-452d-a78f-a6f31bec0b0e ]
+[TICKET ID : a02358ed-cfcf-4740-b3b1-d17daa7b2f52 ]
+Available total ticket count : 48
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 6f781d9a-482c-4da2-a7c7-1573682e873f ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 8591fd90-32fe-42a5-b762-34f5514c9e8e ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 78698e26-4120-4c3e-955c-b5b2584159f9 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID df3177a4-b9c3-4ed9-9aa6-c6d820f52725 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID c7792d5a-de24-4871-b339-f7bdc9510817 ]
+
+>>> Tickets Released :
+[TICKET ID : 9711a75d-bc59-4bc8-b719-96ef145c956e ]
+[TICKET ID : d7b5baa8-6088-494f-9aae-5e91be0df555 ]
+[TICKET ID : 11beeda9-c814-47b1-aa26-8fdd9ce7fd9c ]
+Available total ticket count : 45
+Available ticket count in ticket pool : 8
+
+>>> Tickets Released :
+[TICKET ID : a74bc4ea-a9d1-468d-92e3-61dccb3f4603 ]
+[TICKET ID : 90eabe73-6acc-41a0-ab80-3ffaf356ce37 ]
+Available total ticket count : 43
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID d3204154-9396-4290-8580-10009a2efe50 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 9f854ce0-8062-4f60-a206-e75fabf9df28 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 9854ab85-452b-4861-8efb-a5a63a54959e ]
+
+>>> Tickets Released :
+[TICKET ID : af2df26f-2f0e-4583-aff0-5b814cbd6bcd ]
+[TICKET ID : c5a9ec33-7eb7-4803-afd6-01f1aafda285 ]
+[TICKET ID : b86e0b15-09af-4198-918f-776e1478c4bf ]
+Available total ticket count : 40
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID d0fd1ea9-b5e1-452d-a78f-a6f31bec0b0e ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID a02358ed-cfcf-4740-b3b1-d17daa7b2f52 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 9711a75d-bc59-4bc8-b719-96ef145c956e ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID d7b5baa8-6088-494f-9aae-5e91be0df555 ]
+
+>>> Tickets Released :
+[TICKET ID : b8cac7e3-dc75-4904-877b-f9228964f11b ]
+[TICKET ID : 6399cbcb-0dac-40ef-99ad-2ebe242bdc1f ]
+[TICKET ID : 32e4b86d-131e-4355-a33f-1c4f222244c4 ]
+Available total ticket count : 37
+Available ticket count in ticket pool : 9
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 11beeda9-c814-47b1-aa26-8fdd9ce7fd9c ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID a74bc4ea-a9d1-468d-92e3-61dccb3f4603 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 90eabe73-6acc-41a0-ab80-3ffaf356ce37 ]
+
+>>> Tickets Released :
+[TICKET ID : 811d3044-37ac-4dae-93e0-13817b3f2af5 ]
+[TICKET ID : 4e6fb910-dbca-48d9-8103-ac175746322c ]
+[TICKET ID : e3b7d7a4-f693-4e7e-b6db-272da989a6a5 ]
+Available total ticket count : 34
+Available ticket count in ticket pool : 9
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID af2df26f-2f0e-4583-aff0-5b814cbd6bcd ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID c5a9ec33-7eb7-4803-afd6-01f1aafda285 ]
+
+>>> Tickets Released :
+[TICKET ID : 3ae9155c-a9d2-4958-a06d-b42afc257fc6 ]
+[TICKET ID : a0c01cae-8408-405f-92a7-cf72f74addc6 ]
+[TICKET ID : bb9cedb7-5243-4a74-91a4-88a6a5d5f692 ]
+Available total ticket count : 31
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID b86e0b15-09af-4198-918f-776e1478c4bf ]
+
+>>> Tickets Released :
+[TICKET ID : c238fa64-07d5-4dee-8ecc-81c4677a77c1 ]
+Available total ticket count : 30
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID b8cac7e3-dc75-4904-877b-f9228964f11b ]
+
+>>> Tickets Released :
+[TICKET ID : c4acc11f-aff1-4656-907e-b5afd846317d ]
+Available total ticket count : 29
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 6399cbcb-0dac-40ef-99ad-2ebe242bdc1f ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 32e4b86d-131e-4355-a33f-1c4f222244c4 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 811d3044-37ac-4dae-93e0-13817b3f2af5 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 4e6fb910-dbca-48d9-8103-ac175746322c ]
+
+>>> Tickets Released :
+[TICKET ID : 18a2a611-a06d-46cd-a401-b1657a7b36d5 ]
+[TICKET ID : 09ee0451-99eb-43e5-98e0-36158a3ff597 ]
+[TICKET ID : cdcb2684-53df-4db5-b720-34d4b35c16df ]
+Available total ticket count : 26
+Available ticket count in ticket pool : 9
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID e3b7d7a4-f693-4e7e-b6db-272da989a6a5 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 3ae9155c-a9d2-4958-a06d-b42afc257fc6 ]
+
+>>> Tickets Released :
+[TICKET ID : a2d7d3d6-4101-4334-a513-4be3ef5135a5 ]
+[TICKET ID : 7a653b0f-8522-47c8-9665-a94ae2967188 ]
+[TICKET ID : 4b965180-83a0-4844-824a-20a42c97d0da ]
+Available total ticket count : 23
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID a0c01cae-8408-405f-92a7-cf72f74addc6 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID bb9cedb7-5243-4a74-91a4-88a6a5d5f692 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID c238fa64-07d5-4dee-8ecc-81c4677a77c1 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID c4acc11f-aff1-4656-907e-b5afd846317d ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 18a2a611-a06d-46cd-a401-b1657a7b36d5 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 09ee0451-99eb-43e5-98e0-36158a3ff597 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID cdcb2684-53df-4db5-b720-34d4b35c16df ]
+
+>>> Tickets Released :
+[TICKET ID : d91d4b1f-d1a7-4c2e-9995-4acae33c4348 ]
+[TICKET ID : 9f86012f-d1dc-457c-b7fe-61d755a70393 ]
+[TICKET ID : e1c5eaad-7123-46e9-9c8d-1de23e9e8933 ]
+Available total ticket count : 20
+Available ticket count in ticket pool : 6
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID a2d7d3d6-4101-4334-a513-4be3ef5135a5 ]
+
+>>> Tickets Released :
+[TICKET ID : 2ad5b59b-7b5e-49b8-a840-98b72413f3a1 ]
+[TICKET ID : 8dc166b5-7585-4c38-84ad-de4fbf9e417b ]
+[TICKET ID : 266735e7-31d9-4bdf-85bc-c1ea44701d28 ]
+Available total ticket count : 17
+Available ticket count in ticket pool : 8
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 7a653b0f-8522-47c8-9665-a94ae2967188 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 4b965180-83a0-4844-824a-20a42c97d0da ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID d91d4b1f-d1a7-4c2e-9995-4acae33c4348 ]
+
+>>> Tickets Released :
+[TICKET ID : 0a0ac8ac-d396-47cc-b8ca-5a4bdebe9d19 ]
+[TICKET ID : 9d84d1fa-8f84-4af3-978f-13a0bc19afb7 ]
+[TICKET ID : 67c6659c-6246-4945-b276-d651a3170523 ]
+Available total ticket count : 14
+Available ticket count in ticket pool : 8
+
+>>> Tickets Released :
+[TICKET ID : 2db138ff-a06c-458f-807e-1869fd0318de ]
+[TICKET ID : a75d8a90-9601-4fb6-a7b0-0de46219e869 ]
+Available total ticket count : 12
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 9f86012f-d1dc-457c-b7fe-61d755a70393 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID e1c5eaad-7123-46e9-9c8d-1de23e9e8933 ]
+
+>>> Tickets Released :
+[TICKET ID : f9fd69b1-d49a-4f62-8cd7-184665d41720 ]
+[TICKET ID : ab6bd815-3c75-4678-b41b-0ac20897d856 ]
+Available total ticket count : 10
+Available ticket count in ticket pool : 10
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 2ad5b59b-7b5e-49b8-a840-98b72413f3a1 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 8dc166b5-7585-4c38-84ad-de4fbf9e417b ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 266735e7-31d9-4bdf-85bc-c1ea44701d28 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 0a0ac8ac-d396-47cc-b8ca-5a4bdebe9d19 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 9d84d1fa-8f84-4af3-978f-13a0bc19afb7 ]
+
+>>> Tickets Released :
+[TICKET ID : 2a0316fb-90df-493d-b5bf-8d5be572b7a1 ]
+[TICKET ID : ec78abc5-43e4-4839-b816-b1cabfaa3032 ]
+[TICKET ID : f36dea81-ced5-46fa-9010-5e9e207813b3 ]
+Available total ticket count : 7
+Available ticket count in ticket pool : 8
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 67c6659c-6246-4945-b276-d651a3170523 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 2db138ff-a06c-458f-807e-1869fd0318de ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID a75d8a90-9601-4fb6-a7b0-0de46219e869 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID f9fd69b1-d49a-4f62-8cd7-184665d41720 ]
+
+>>> Tickets Released :
+[TICKET ID : f169c413-50e6-4613-89e2-4adf34cdfc07 ]
+[TICKET ID : 43c4e7cb-188f-4bc7-84e9-755e419a724d ]
+[TICKET ID : 3f2adc22-6d0a-43e5-8a01-1b713f4ace4c ]
+Available total ticket count : 4
+Available ticket count in ticket pool : 7
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID ab6bd815-3c75-4678-b41b-0ac20897d856 ]
+
+>>> Tickets Released :
+[TICKET ID : 6a32a37a-c288-44cd-bc84-798de9d2c0a3 ]
+[TICKET ID : 46e1c53c-4a38-4e4f-900d-5e351ab0d351 ]
+[TICKET ID : 1259ae7b-011d-4f7f-9f44-9b08eabc275a ]
+Available total ticket count : 1
+Available ticket count in ticket pool : 9
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 2a0316fb-90df-493d-b5bf-8d5be572b7a1 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID ec78abc5-43e4-4839-b816-b1cabfaa3032 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID f36dea81-ced5-46fa-9010-5e9e207813b3 ]
+
+>>> Tickets Released :
+[TICKET ID : 578f862a-38bc-4aa3-a446-238156c55faf ]
+Available total ticket count : 0
+Available ticket count in ticket pool : 7
+Tickets are sold out. No more tickets can be produced.
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID f169c413-50e6-4613-89e2-4adf34cdfc07 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 43c4e7cb-188f-4bc7-84e9-755e419a724d ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-5] consumed [TICKET ID 3f2adc22-6d0a-43e5-8a01-1b713f4ace4c ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-6] consumed [TICKET ID 6a32a37a-c288-44cd-bc84-798de9d2c0a3 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-2] consumed [TICKET ID 46e1c53c-4a38-4e4f-900d-5e351ab0d351 ]
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-4] consumed [TICKET ID 1259ae7b-011d-4f7f-9f44-9b08eabc275a ]
+Tickets are sold out. No more tickets can be produced.
+
+>>> Tickets Consumed :
+[CONSUMER: Thread-3] consumed [TICKET ID 578f862a-38bc-4aa3-a446-238156c55faf ]
+All tickets are sold out!. System is stopping
+All tickets are sold out!. System is stopping
+All tickets are sold out!. System is stopping
+All tickets are sold out!. System is stopping
+All tickets are sold out!. System is stopping

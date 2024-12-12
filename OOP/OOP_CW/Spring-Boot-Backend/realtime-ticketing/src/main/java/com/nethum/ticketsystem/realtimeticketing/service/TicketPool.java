@@ -44,7 +44,6 @@ public class TicketPool {
                         String.format("{\"type\":\"count\",\"key\":\"Available total ticket count\",\"value\":%s}", value)
                 );
                 logger.info("Broadcasting Available total ticket count: " + value);
-                System.out.println("Broadcasting debug count update: " + message);
             } else if (message.contains("Available ticket count in ticket pool")) {
                 String[] parts = message.split(":");
                 String value = parts.length > 1 ? parts[1].trim() : "0";
