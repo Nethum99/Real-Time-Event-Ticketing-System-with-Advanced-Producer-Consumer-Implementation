@@ -34,7 +34,6 @@ public class Main {
             ticketPool = new TicketPool(configuration.getMaxCapacity(),configuration.getTotalTickets());
 
 
-
             Thread[] vendors = new Thread[configuration.getActiveVendors()];
             for(int i=0; i<configuration.getActiveVendors(); i++){
                 vendors[i] = new Vendor(ticketPool,configuration.getTicketReleaseRate());

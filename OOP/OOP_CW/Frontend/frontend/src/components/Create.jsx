@@ -118,13 +118,15 @@ const CreateTicketConfig = () => {
   };
 
   const getLogStyle = (log) => {
-    if (log.toLowerCase().includes('consumed')) {
-      return { color: 'white' };
+    if (log.includes('c0a697b9-91da-4f31-8138-c4f6bde5dbc5')) {
+      // Ticket ID "c0a697b9-91da-4f31-8138-c4f6bde5dbc5" - Pink/Red gradient
+      return { color: 'linear-gradient(to right, pink, red)', fontWeight: 'bold' };
     }
-    if (log.toLowerCase().includes('ticket released')) {
-      return { color: 'yellow' };
+    if (log.includes('CONSUMER: Thread-24')) {
+      // "CONSUMER: Thread-24" - Light Blue
+      return { color: 'lightblue', fontWeight: 'bold' };
     }
-    return { color: 'white' };
+    return { color: 'white' }; // Default color
   };
 
   useEffect(() => {
@@ -177,20 +179,20 @@ const CreateTicketConfig = () => {
   }, [consoleLogs]);
 
   return (
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f7f7f7' }}>
       {/* Navbar */}
       <Navbar />
 
       {/* Content Layout */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: '1rem', padding: '1rem' }}>
+      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', gap: '1rem', padding: '1rem', overflowY: 'auto' }}>
         {/* Left Section - Form */}
-        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '0.5rem', overflowY: 'auto' }}>
           <Paper
             sx={{
               padding: '1.5rem',
               borderRadius: '8px',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              background: 'linear-gradient(to right, #E0E0E0, #FFFFFF)',
+              background: 'linear-gradient(to right, #ffecd2, #fcb69f)', // Attractive gradient
               border: '2px solid #B0BEC5',
             }}
           >
@@ -212,6 +214,7 @@ const CreateTicketConfig = () => {
                       sx={{
                         fontSize: '1.2rem',
                         borderRadius: '5px',
+                        backgroundColor: '#f0f0f0',
                       }}
                     />
                   </Grid>
@@ -227,34 +230,10 @@ const CreateTicketConfig = () => {
               </Button>
             </form>
           </Paper>
-
-          <Paper sx={{ marginTop: '0.5rem', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem', color: '#4B9CD3', fontSize: '1.2rem' }}>
-              Field Descriptions
-            </Typography>
-            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
-              <strong>Total Number of Tickets:</strong> Maximum tickets all vendors can produce.
-            </Typography>
-            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
-              <strong>Max Capacity in Ticket Pool:</strong> Maximum tickets allowed in the pool at one time.
-            </Typography>
-            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
-              <strong>Ticket Release Rate:</strong> Number of tickets each vendor produces per unit time.
-            </Typography>
-            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
-              <strong>Customer Retrieval Rate:</strong> Number of tickets each customer retrieves per unit time.
-            </Typography>
-            <Typography sx={{ marginBottom: '0.5rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
-              <strong>Number of Active Customers:</strong> Consumers concurrently retrieving tickets.
-            </Typography>
-            <Typography sx={{ fontSize: '0.9rem', lineHeight: 1.5 }}>
-              <strong>Number of Active Vendors:</strong> Producers concurrently generating tickets.
-            </Typography>
-          </Paper>
         </Box>
 
         {/* Right Section */}
-        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <Box sx={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1rem', overflowY: 'auto' }}>
           {/* Ticket Counts */}
           <Box sx={{ display: 'flex', gap: '1rem', marginBottom: '1rem', justifyContent: 'center' }}>
             <TicketCountCard title="Total Available Tickets" count={ticketCounts.totalAvailable} color="#4CAF50" />
@@ -265,7 +244,7 @@ const CreateTicketConfig = () => {
           <Paper
             sx={{
               flex: 1,
-              backgroundColor: '#000',
+              backgroundColor: '#212121',
               color: '#fff',
               borderRadius: '8px',
               padding: '1rem',

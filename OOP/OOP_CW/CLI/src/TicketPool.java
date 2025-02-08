@@ -73,8 +73,13 @@ public class TicketPool {
                 }
                 logMessage("Available total ticket count : "+(totalTickets-ticketProduced));
                 logMessage("Available ticket count in ticket pool : "+ticketpool.size());
+
+                logMessage("Purchased Ticket count :"+(totalTickets-ticketProduced));
                 return true;
             }
+
+
+
             else {
                 logMessage("Cannot produce tickets. Pool at max capacity or total tickets limit reached.");
                 return false;
@@ -104,6 +109,7 @@ public class TicketPool {
                 UUID ticket = ticketpool.poll();        //deleting latest ticeket in queue and assign it ticket
                 if(ticket!=null){
                     logMessage("[CONSUMER: "+Thread.currentThread().getName()+ "] consumed [TICKET ID "+ticket+" ]");
+
                     ticketConsumed++;
                     return true;
                 }
